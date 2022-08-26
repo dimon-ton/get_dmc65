@@ -8,7 +8,7 @@ import sys
 import datetime
 
 def send_line(msg, pic):
-    LINE_ACCESS_TOKEN="4ED99HkYOoqVUEdd6SPN4OOegI3S7zqu5ZYYwi5QstA"
+    LINE_ACCESS_TOKEN="chlq8dq9PMYatKECbIy2jM07xI58ttFVLZDhUokM4uI"
     url = "https://notify-api.line.me/api/notify"
     file = {'imageFile':open(pic,'rb')}
     data = ({
