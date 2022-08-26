@@ -19,17 +19,16 @@ login_submit = driver.find_element(By.ID,'btnSubmit').click()
 
 dashbaord = driver.find_element(By.XPATH, '/html/body/header/div/div[2]/div/ul[2]/li[1]/a/button').click()
 
-row = []
+
 row_dict = {}
+for r in range(8):
+    row = []
+    for i in range(4):
+        data = driver.find_element(By.XPATH, '/html/body/div/div/div/div/div[2]/table[1]/tbody/tr[{}+1]/td[{}+1]'.format(r, i)).text
+        row.append(data)
 
-for i in range(4):
-    data = driver.find_element(By.XPATH, '/html/body/div/div/div/div/div[2]/table[1]/tbody/tr[1]/td[{}+1]'.format(i)).text
-    row.append(data)
+    row_dict[row[0]] = {'boy':row[1], 'girl':row[2], 'total':row[3]}
 
-
-
-row_dict[row[0]] = {'boy':row[1], 'girl':row[2], 'total':row[3]}
-
-print(row_dict)
+print(row_dict['อนุบาล 1']['total'])
 
 driver.close()
