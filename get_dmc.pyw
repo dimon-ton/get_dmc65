@@ -7,6 +7,13 @@ import urllib.parse
 import sys
 import datetime
 
+from chromedriver_autoinstaller.utils import get_chromedriver_path
+from chromedriver_autoinstaller.utils import get_chrome_version
+from chromedriver_autoinstaller import install
+
+# install chromedriver if it is outdated.
+install()
+
 def send_line(msg, pic):
     LINE_ACCESS_TOKEN="chlq8dq9PMYatKECbIy2jM07xI58ttFVLZDhUokM4uI"
     url = "https://notify-api.line.me/api/notify"
@@ -18,7 +25,10 @@ def send_line(msg, pic):
     session = requests.Session()
     r=session.post(url, headers=LINE_HEADERS, files=file, data=data)
 
-path = r'C:\Users\saich\Documents\get_dmc\chromedriver.exe'
+
+path = '{}/{}/chromedriver.exe'.format(get_chromedriver_path(), get_chrome_version()[:3])
+print(path)
+print('test',get_chromedriver_path)
 service = Service(path)
 driver = webdriver.Chrome(service=service)
 
@@ -62,5 +72,6 @@ driver.save_screenshot('pic.png')
 image_path = 'pic.png'
 
 driver.quit()
+
 
 send_line(msg, image_path)
