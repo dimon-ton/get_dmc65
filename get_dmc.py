@@ -24,8 +24,12 @@ driver = webdriver.Chrome(service=service)
 
 driver.get('https://portal.bopp-obec.info/obec65/auth/login')
 
-username = '1103100275320'
-password = '12345678'
+# open file for authen
+
+with open('auth.txt', 'r') as file:
+    username = file.readline().strip()
+    password = file.readline().strip()
+
 
 username_inpurt = driver.find_element(By.XPATH, '/html/body/div/div/div[1]/form/div[1]/div/input').send_keys(username)
 password_input = driver.find_element(By.XPATH, '/html/body/div/div/div[1]/form/div[2]/div/input').send_keys(password)
